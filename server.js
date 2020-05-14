@@ -10,3 +10,5 @@ var datetime = moment().format();
 
 server.listen(port);
 console.log("SERVER STARTED @:" + datetime + " listening on PORT: " + port);
+
+require("cf-deployment-tracker-client").track();
