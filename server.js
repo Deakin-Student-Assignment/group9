@@ -12,6 +12,9 @@ app.get("/sayHello", function (req, res) {
     res.end("Hello " + user_name + "!");
 });
 
+
+app.listen(port);
+
 var datetime = moment().format();
 
 console.log("SERVER STARTED @:" + datetime + " on PORT: " + port);
