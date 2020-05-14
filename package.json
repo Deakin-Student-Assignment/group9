@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/Deakin-Student-Assignment/group9.git"
   },
   "author": "Connie Cox",
   "license": "ISC",
   "dependencies": {
+    "cf-deployment-tracker-client": "^0.1.4",
     "express": "^4.17.1",
     "moment": "^2.25.3"
   }
