@@ -5,7 +5,7 @@ applications:
   name: group9nodeexpress
   buildpack: sdk-for-nodejs
   command: npm start
-  disk_quota: 1G
+  disk_quota: 2G
   memory: 256MB
   domain: mybluemix.net
   host: sit737-group9
