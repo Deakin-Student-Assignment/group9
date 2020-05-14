@@ -1,17 +1,12 @@
-//const http = require('http');
-var app = require('./app');
+var express = require('express');
+var app = express();
 const moment = require('moment');
 
-//const port = process.env.port || 8080;
-
-//const server = http.createServer(app);
-
 app.set('port', (process.env.port || 8080));
-
+app.use(express.static(__dirname + '/public'));
 
 var datetime = moment().format();
 
-server.listen(port);
-console.log("SERVER STARTED @:" + datetime + " listening on PORT: " + port);
+console.log("SERVER STARTED @:" + datetime);
 
 require("cf-deployment-tracker-client").track();
