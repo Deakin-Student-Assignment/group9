@@ -2,6 +2,11 @@
   "name": "servertemplate",
   "version": "1.0.0",
   "description": "node.js server template",
+  "dependencies": {
+    "cf-deployment-tracker-client": "*",
+    "express": "^4.17.1",
+    "moment": "^2.25.3"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -11,10 +16,5 @@
     "url": "https://github.com/Deakin-Student-Assignment/group9.git"
   },
   "author": "Connie Cox",
-  "license": "ISC",
-  "dependencies": {
-    "cf-deployment-tracker-client": "^0.1.4",
-    "express": "^4.17.1",
-    "moment": "^2.25.3"
-  }
+  "license": "ISC"
 }
