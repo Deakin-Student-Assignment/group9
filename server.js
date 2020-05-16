@@ -1,21 +1,23 @@
-var express = require('express');
-var app = express();
+//var express = require('express');
+//var app = express();
+
+const http = require('http');
+const app = require('./app');
 const moment = require('moment');
 
 var port = process.env.VCAP_APP_PORT || 8080;
 
-app.use(express.static(__dirname + '/public'));
+const server = http.createServer(app);
+//app.use(express.static(__dirname + '/public'));
 
-app.get("/sayHello", function (req, res) {
+/*app.get("/sayHello", function (req, res) {
     var user_name = req.query.user_name;
 
     res.end("Hello " + user_name + "!");
-});
-
-
-app.listen(port);
+});*/
 
 var datetime = moment().format();
+server.listen(port);
 
 console.log("SERVER STARTED @:" + datetime + " on PORT: " + port);
 
