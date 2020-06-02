@@ -1,51 +1,74 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <title>My Node App</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="env.js"></script>
-</head>
-
-<body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo right">Logo</a>
-
+    <head>
+        <title>BOOK A CAR</title>
+        <link rel= "stylesheet" type="text/css" href="style2.css">
+        <link rel= "stylesheet" type="text/css" href="w3css.css">
+    </head>
+    <body>
+        <header>
+            <div class="main1">
+                <div class ="logo">
+                    <img src ="logo.jpg">
+                </div>
+		<div class ="main">
+                <ul>
+                    <li class="active"><a href= "#">Home</a></li>
+                    <li><a href= "#">Products</a></li>
+                    <li><a href= "#main">About Us</a></li>
+                    <li><a href= "contact.html">Contact Us</a></li>
+                </ul>
+		</div>
+            </div>
+            <div class="title">
+                <h1>BOOK A CAR</h1>
+            </div>
+            <div class="w3-container menu w3-center">      
+                   <div class="w3-dropdown-hover">  
+                          <button class="w3-button w3-black">MAKE</button>   
+                            <div class="w3-dropdown-content w3-bar-block w3-border">  
+                                    <a href="#" class="w3-bar-item w3-button">AUDI</a>  
+                                    <a href="#" class="w3-bar-item w3-button">FORD</a> 
+                                    <a href="#" class="w3-bar-item w3-button">TOYOTA</a> 
+                                    <a href="#" class="w3-bar-item w3-button">TOYOTA</a>  
+                            </div> 
+                    </div> 
+                    <div class="w3-dropdown-hover">  
+                        <button class="w3-button w3-black">MODEL</button>   
+                          <div class="w3-dropdown-content w3-bar-block w3-border">  
+                                  <a href="#" class="w3-bar-item w3-button">SEDAN</a>  
+                                  <a href="#" class="w3-bar-item w3-button">HACKBACK</a>  
+                                  <a href="#" class="w3-bar-item w3-button">SUV</a>  
+                                  <a href="#" class="w3-bar-item w3-button">LUXURY</a> 
+                          </div> 
+                  </div>
+                  <div class="w3-dropdown-hover">  
+                    <button class="w3-button w3-black">Pickup Date</button>   
+                        <div class="w3-dropdown-content w3-bar-block w3-border">  
+                            <input type="date" id= "pickup date">
+                        </div> 
+                    </div>
+                  <div class="w3-dropdown-hover">  
+                        <button class="w3-button w3-black">Dropdrown  Date</button>   
+                            <div class="w3-dropdown-content w3-bar-block w3-border">  
+                                <input type="date" id= "pickup date">
+                            </div> 
+                  </div>
+            </div> 
+            <div class="button">
+                <a href="#" class="btn">SEARCH</a>
+            </div>
+                <div id = "main" class="w3-text-white" >
+            <p><h2>About Book A Car </h2></p>
+                <p> These days renting a car is a tough task with all those necessary documents and 
+                    time is wasted in finding a good one, so here is a relief for all those who love to 
+                    travel in their own transport. This is a website which offers all the cars that are 
+                    listed from their owners who are not using yet wanted to provide a facility for others
+                    to use from their cars when they are not using them. Book A Car of your choice and hit
+                    the roads with some awesome unplanned roadtrips to make sweet memories.
+                </p>
         </div>
-    </nav>
-
-    <div class="container">
-        <h1>Welcome to my new changes.</h1>
-        <div id="nameInput" class="input-group-lg center-block helloInput">
-            <p class="lead">What is your name?</p>
-            <input id="user_name" type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1"
-                value="" />
-        </div>
-        <p id="response" class="lead text-center"></p>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script>
-        $('#user_name').keydown(function (e) {
-            if (e.which == 13) { //catch Enter key
-                $.get("/sayHello?user_name=" + $('#user_name').val())
-                    .done(function (data) {
-                        $('#response').html(data);
-                        $('#nameInput').hide();
-                    });
-            }
-        });
-    </script>
-</body>
-
+        <p id="footer">Copyright &copy; 2020 Book A Car Australia</p>
+    </header>
+    </body>
 </html>
