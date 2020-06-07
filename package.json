@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "node.js server template",
   "dependencies": {
+    "@sendgrid/mail": "^7.1.1",
     "cf-deployment-tracker-client": "*",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "https": "^1.0.0",
     "moment": "^2.25.3"
   },
   "main": "server.js",
