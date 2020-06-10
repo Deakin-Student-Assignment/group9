@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BOOK A CAR</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style2.css">
+    <link rel="stylesheet" type="text/css" href="w3css.css">
+    <script src="env.js"></script>
+</head>
+
+<body class="body">
+    <!--
+    <header>
+        <div class="main1">
+            <div class="logo">
+                <img src="logo.jpg">
+            </div>
+            <div class="main">
+                <ul>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="login.html">Login/Signup</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="title">
+            <h1>BOOK A CAR</h1>
+        </div>
+    </header>
+   
+    <div class="w3-container menu w3-center">
+        <div class="w3-dropdown-hover">
+            <button class="w3-button w3-black">MAKE</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+                <a href="#" class="w3-bar-item w3-button">AUDI</a>
+                <a href="#" class="w3-bar-item w3-button">FORD</a>
+                <a href="#" class="w3-bar-item w3-button">TOYOTA</a>
+                <a href="#" class="w3-bar-item w3-button">TOYOTA</a>
+            </div>
+        </div>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button w3-black">MODEL</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+                <a href="#" class="w3-bar-item w3-button">SEDAN</a>
+                <a href="#" class="w3-bar-item w3-button">HACKBACK</a>
+                <a href="#" class="w3-bar-item w3-button">SUV</a>
+                <a href="#" class="w3-bar-item w3-button">LUXURY</a>
+            </div>
+        </div>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button w3-black">Pick-up Date</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+                <input type="date" id="pickup date">
+            </div>
+        </div>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button w3-black">Drop-drown Date</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+                <input type="date" id="dropoff date">
+            </div>
+        </div>
+    </div>
+    <div class="button">
+        <button id="btnSearch" class="w3-button w3-black">SEARCH</button>
+    </div>
+-->
+    <nav>
+        <div class="nav-wrapper #212121 grey darken-4">
+            <a href="#" class="brand-logo"><img src="logo.jpg"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <!--<li><a href="collapsible.html">JavaScript</a></li>-->
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- center content-->
+        <div class="row">
+            <div class="col s12">
+                <br>
+                <br>
+            </div>
+            <div class="col s12">
+                <h1 class="center-align title">BOOK-A-CAR</h1>
+
+            </div>
+        </div>
+        <div class="row">
+            <br>
+            <br>
+        </div>
+        <div class="row">
+            <div class="input-field col s2"></div>
+            <div class="input-field col s4">
+                <input id="address" type="text" class="validate">
+                <label for="address">Delivery Location</label>
+            </div>
+            <div class="input-field col s2">
+                <label for="dpDelivery">Delivery Date</label>
+                <input id="dpDelivery" type="text" class="datepicker">
+            </div>
+            <div class="input-field col s2">
+                <label for="dpReturn">Return Date</label>
+                <input id="dpReturn" type="text" class="datepicker">
+            </div>
+            <div class="input-field col s2"></div>
+        </div>
+        <div class="row">
+            <div class="col s5">
+
+            </div>
+            <div class="col s2">
+                <button id="btnSearch" class="btn waves-effect waves-light #212121 grey darken-4" type="submit"
+                    name="action">Search
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <div class="col s5">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-copyright">
+        <div class="container center-align"><span class="grey-text text-lighten-4">Copyright &copy; 2020 Book-A-Car
+                Australia
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

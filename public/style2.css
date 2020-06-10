@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Century Gothic;
+
+
+}
+
+body {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("image1.jpg");
+}
+
+.transparentBG {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+header {
+
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("image1.jpg");
+}
+
+
+ul {
+    float: right;
+    list-style-type: none;
+    margin-top: 25px;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 20px;
+    border: 1px solid: transparent;
+    transition: 0.6s ease;
+}
+
+ul li a:hover {
+    background-color: white;
+    color: black;
+}
+
+ul li.active a {
+    background-color: #ffff;
+    color: #000;
+}
+
+.logo img {
+    float: left;
+    width: 100px;
+    height: auto;
+}
+
+.logo {
+    position: absolute;
+    float: left;
+    max-width: 1200px;
+    margin: 20px 0px 0px 20px;
+}
+
+.main {
+
+    float: right;
+    max-width: 1200px;
+    margin: auto;
+    max-width: 1200px;
+    top: 85%
+}
+
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 8px 16px;
+}
+
+select {
+    font-size: 20px;
+}
+
+.title {
+    color: burlywood;
+    font-style: oblique;
+    font-family: modren;
+    font-size: 60px;
+}
+
+.title h1 {
+    color: burlywood;
+    font-style: oblique;
+    font-family: modren;
+    font-size: 60px;
+    width: auto;
+}
+
+.button {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*.btn {
+    border: 1px solid #fff;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+}*/
+
+#footer {
+    text-align: center;
+    color: black;
+    font-size: 0.85em;
+}
+
+/* label color */
+.input-field label {
+    color: #ffffff;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus+label {
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+.input-field input[type=text]:focus {
+    color: #ffffff;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 10px solid #fff;
+    box-shadow: 0 1px 0 0 #ffffff;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 10px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #000;
+}
