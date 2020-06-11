@@ -1,9 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Century Gothic;
-
-
+    font-family: 'Ubuntu Light',
+        sans-serif;
 }
 
 body {
@@ -12,6 +11,7 @@ body {
     background-position: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("image1.jpg");
+    font-family: 'Ubuntu Light', sans-serif;
 }
 
 .transparentBG {

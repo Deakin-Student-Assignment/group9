@@ -13,10 +13,18 @@
          makeBooking();
      })
 
+     $('#btnLogin').click(function () {
+         doLogin();
+     })
+
  })
 
 
  function makeBooking() {
-     alert('button clicked')
+     alert('search button clicked');
 
+ }
+
+ function doLogin() {
+     alert('login button clicked');
  }
