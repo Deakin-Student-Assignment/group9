@@ -1,149 +1,76 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< Updated upstream
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
-
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: rgb(74, 135, 206);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 30%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-}
-</style>
-</head>
-<body>
-
-<h2>Login Form</h2>
-
-<form action="/action_page.php" method="post">
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-  <span class="psw">Forgot <a href="#">password?</a></span>
-  <p>Not Registered, Signup Here!!</p>
-    <button type="button" class="signupbtn"><a href= "Signup.html">Register</a></button>
-     </div>
-</form>
-
-</body>
-=======
 
 <head>
-    <title>BOOK A CAR</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>BOOK A CAR</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style2.css">
-    <link rel="stylesheet" type="text/css" href="w3css.css">
-    <script src="env.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style2.css">
+  <link rel="stylesheet" type="text/css" href="w3css.css">
+  <script src="env.js"></script>
 </head>
 
 <body class="body">
-    <nav>
-        <div class="nav-wrapper #212121 grey darken-4">
-            <a href="#" class="brand-logo"><img src="logo.jpg"></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
-                <!--<li><a href="collapsible.html">JavaScript</a></li>-->
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <!-- center content-->
-        <div class="row">
-            <div class="col s12">
-                <br>
-                <br>
-            </div>
-            <div class="col s12">
-                <h1 class="title">Login</h1>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s6">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                <button id="btnLogin" class="btn waves-effect waves-light #212121 grey darken-4" type="submit"
-                    name="action">Login
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-        </div>
+  <nav>
+    <div class="nav-wrapper #212121 grey darken-4">
+      <a href="#" class="brand-logo"><img src="logo.jpg"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <!--<li><a href="collapsible.html">JavaScript</a></li>-->
+      </ul>
     </div>
+  </nav>
+  <div class="container">
+    <!-- center content-->
+    <div class="row">
+      <div class="col s12">
+        <br>
+        <br>
+      </div>
+      <div class="col s12">
+        <h1 class="title">Login</h1>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" type="email" class="validate">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate">
+        <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2">
+        <button id="btnLogin" class="btn waves-effect waves-light #212121 grey darken-4" type="submit"
+          name="action">Login
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s3">
+        <h7 class="white-text lighten-5">Don't have an account? <span class="red-text lighten-5"><a
+              href="signup.html">Sign Up</a></span>
+        </h7>
+      </div>
+    </div>
+  </div>
 
 </body>
 
->>>>>>> Stashed changes
 </html>
