@@ -160,5 +160,28 @@ select {
 
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: #000;
+    color: #fff;
+}
+
+.collapsible {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+.collapsible-header {
+    width: 100%;
+    background-color: #fff;
+    display: block;
+}
+
+.collapsible-body {
+    width: 100%;
+    background-color: #fff;
+
+}
+
+.collapsible-panel {
+    width: 100%;
+    background-color: #fff;
 }
