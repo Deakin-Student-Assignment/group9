@@ -3,4 +3,4 @@ applications:
 - name: group9-ass3
   command: npm start
   memory: 128MB
-  random-route: true
+  random-route: false

@@ -10,7 +10,7 @@ body {
     background-size: cover;
     background-position: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("image1.jpg");
+        url("../content/image1.jpg");
     font-family: 'Ubuntu Light', sans-serif;
 }
 
@@ -137,19 +137,19 @@ select {
 }
 
 .input-field input[type=text]:focus {
-    color: #ffffff;
+    color: none;
 }
 
 /* label underline focus color */
 .input-field input[type=text]:focus {
-    border-bottom: 1px solid #000;
-    box-shadow: 0 1px 0 0 #000;
+    border-bottom: 1px solid #ffffff;
+    box-shadow: 0 1px 0 0 #ffffff;
 }
 
 /* valid color */
 .input-field input[type=text].valid {
-    border-bottom: 1px solid #000;
-    box-shadow: 0 1px 0 0 #000;
+    border-bottom: 1px solid#ffffff;
+    box-shadow: 0 1px 0 0 #ffffff;
 }
 
 /* invalid color */
@@ -160,28 +160,31 @@ select {
 
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: #fff;
+    color: none;
 }
 
-.collapsible {
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #fff;
+.flowtitle {
+    color: goldenrod;
+    font-size: medium;
 }
 
-.collapsible-header {
-    width: 100%;
-    background-color: #fff;
+.flow-text {
+    color: #ffffff;
+    font-size: small;
+}
+
+.door {
     display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    src: url('../content/cardoor.png');
 }
 
-.collapsible-body {
-    width: 100%;
-    background-color: #fff;
-
+.info {
+    color: #ffffff;
 }
 
-.collapsible-panel {
-    width: 100%;
-    background-color: #fff;
+.rate {
+    font-size: large;
 }

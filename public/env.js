@@ -77,12 +77,6 @@ $(document).ready(function () {
 
     function doSearch() {
 
-        var searchq = {
-            location: $('#address').val(),
-            deldate: $('#dpDelivery').datepicker().val(),
-            delreturn: $('#dpReturn').datepicker().val()
-        };
-
         //console.log(searchq);
         deladdress = $('#address').val();
         deldate = $('#dpDelivery').datepicker().val();
@@ -92,7 +86,17 @@ $(document).ready(function () {
         localStorage.setItem('delreturn', delreturn);
 
 
+        //$(location).attr('href', './reservation.html');
+        var searchq = {
+            location: deladdress,
+            deldate: deldate,
+            delreturn: delreturn
+
+        };
+        //searchq = JSON.stringify(searchq);
         $(location).attr('href', './reservation.html');
+        // $.get("/reservation/", searchq);
+
     };
 
 
@@ -115,4 +119,34 @@ function getStorage() {
     $('#deladdress').val(deladd);
     $('#deldate').val(deldate);
     $('#delreturn').val(delreturn);
+
+    var searchq = {
+        location: deladd,
+        deldate: deldate,
+        delreturn: delreturn
+
+    };
+    searchq = JSON.stringify(searchq);
+    $.get("/reservation/", searchq, function (data) {
+        var imgurl, details, info, cost;
+        for (i = 1; i < data.length; i++) {
+            console.log(data[i][1].Image);
+            imgurl = "./content/" + data[i][1].Image;
+            details = "<p class=\"flow-text\"><b><span class=\"flowtitle\">" + data[i][1].Type + " " + data[i][1].Transmission + "</span></b>";
+            details += "<br>" + data[i][1].Make + " " + data[i][1].Model + " or similar.<br>";
+            details += data[i][1].Transmission + " Transmission";
+            info = "<span class=\"info\"><i class=\"material-icons\">person</i> " + data[i][1].Seats + " seats&nbsp;&nbsp;&nbsp;&nbsp;";
+            info += "<img src=\"./content/cardoor.png\" width=\"7%\" height=\"7%\" margin-bottom:\"10px\"> " + data[i][1].Doors + " doors ";
+            info += "<br><i class=\"material-icons\">usb</i> <i class=\"material-icons\">bluetooth_audio</i> <i class=\"material-icons\">ac_unit</i></span>";
+            cost = "<span class=\"info rate\">A$" + data[i][1].Rate + " per day.</span><br>";
+            cost += "<button id=\"btnSelect\" class=\"btn waves-effect waves-light #212121 grey darken-4\" type=\"submit\" name=\"action\">Select<i class=\"material-icons right\">add</i></button>"
+            updateDiv(imgurl, details, info, cost);
+        };
+    });
+
+    var updateDiv = function (url, details, info, cost) {
+        $("#spacer").append('</div><div class=\"row\" id=\"carsrow\"><div class=\"col s12\"><div class=\"col s3\"><img src=\"' + url + '\" imgborder=\"1\" heigh=\"75%\" width=\"75%\"></div><div class=\"col s3\">' + details + '</div><div class=\"col s3\">' + info + '</div><div class=\"col s3\">' + cost + '</div></div></div></div>');
+
+    };
+
 };

@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-var db = require("../config/db/user");
+var db = require("../config/db/cars");
 
 // INITIALISES & OPENS A DATABASE CONNECTION TO THE USER DB
 db.open(function (callback) {
@@ -13,22 +13,21 @@ db.open(function (callback) {
 
 });
 
-exports.signup = function (req, res) {
-    var user;
+exports.getCars = function (req, callback) {
+    var cars;
     try {
-        db.doInsertOne(req, function (err, result) {
-            if (err) {
-                throw err;
+        db.getCars(function (error, result) {
+            if (error) {
+                throw error;
             } else {
-                user = result;
-                res.status(200).json({
-                    message: "User created."
-                });
-
+                cars = result;
             }
+
+            return callback(null, cars);
         });
+
     } catch (error) {
         throw error;
-    }
+    };
 
 };

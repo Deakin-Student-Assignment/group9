@@ -3,7 +3,8 @@
 const express = require('express');
 const app = express();
 const bodyparser = require("body-parser");
-const userRoute = require("./src/routes/user")
+const signupRoute = require("./src/routes/signup");
+const resRoute = require("./src/routes/reservation");
 require("dotenv").config();
 
 
@@ -16,6 +17,7 @@ app.use(bodyparser.urlencoded({
 // serve static content 'web pages'
 app.use(express.static(__dirname + '/public'));
 
-app.use('/signup', userRoute);
+app.use('/signup', signupRoute);
+app.use('/reservation', resRoute);
 
 module.exports = app;
