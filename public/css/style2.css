@@ -188,3 +188,7 @@ select {
 .rate {
     font-size: large;
 }
+
+.selection {
+    background-color: bisque;
+}

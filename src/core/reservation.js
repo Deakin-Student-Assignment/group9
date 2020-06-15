@@ -31,3 +31,21 @@ exports.getCars = function (req, callback) {
     };
 
 };
+
+exports.getCar = function (req, callback) {
+    var car;
+
+    try {
+        db.getCar(req, function (error, result) {
+            if (error) {
+                throw (error);
+            } else {
+                car = result;
+            }
+            return callback(null, car);
+        });
+    } catch (error) {
+        throw error;
+    };
+
+};

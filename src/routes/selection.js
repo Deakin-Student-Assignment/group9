@@ -10,21 +10,15 @@ router.get('/', (req, res) => {
     var cars = [];
     var msg;
 
-    reserve.getCars(req.query, function (err, items) {
+    reserve.getCar(req.query, function (err, items) {
         if (err) {
             throw err;
         } else {
-            /*
+
             for (var i in items) {
-
-                console.log(JSON.stringify(items));
-                /*cars.push({
-                    items[i]
-                });*/
-
-
-
-            res.send(items);
+                cars.push([i, items[i]]);
+            };
+            res.send(cars);
         };
     });
 

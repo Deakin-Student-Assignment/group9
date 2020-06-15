@@ -36,3 +36,17 @@ exports.getCars = function (callback) {
         });
 
 };
+
+exports.getCar = function (req, callback) {
+    var car;
+
+    collection
+        .find(req).toArray(function (err, item) {
+            if (err) {
+                throw err;
+            } else {
+                car = item;
+            }
+            return callback(null, car);
+        })
+}

@@ -13,22 +13,27 @@ $(document).ready(function () {
     });
 
     // bind the search button
-    $('#btnSearch').click(function () {
+    $('#btnSearch').on("click", function () {
         doSearch();
-    })
+    });
 
     // bind the login button
     $('#btnLogin').click(function () {
         doLogin();
-    })
+    });
 
     // bind the sign up button
     $('#signup').submit(function (event) {
         event.preventDefault();
         doSignup();
-    })
+    });
 
-    $('#cars').collapsible();
+
+    $('#btnBookit').on("click", function (event) {
+        event.preventDefault();
+        doBooking();
+
+    });
 
     function doSignup() {
         var user = {
@@ -77,7 +82,6 @@ $(document).ready(function () {
 
     function doSearch() {
 
-        //console.log(searchq);
         deladdress = $('#address').val();
         deldate = $('#dpDelivery').datepicker().val();
         delreturn = $('#dpReturn').datepicker().val();
@@ -85,21 +89,9 @@ $(document).ready(function () {
         localStorage.setItem('deldate', deldate);
         localStorage.setItem('delreturn', delreturn);
 
-
-        //$(location).attr('href', './reservation.html');
-        var searchq = {
-            location: deladdress,
-            deldate: deldate,
-            delreturn: delreturn
-
-        };
-        //searchq = JSON.stringify(searchq);
         $(location).attr('href', './reservation.html');
-        // $.get("/reservation/", searchq);
 
     };
-
-
 
 })
 
@@ -107,15 +99,15 @@ function doLogin() {
     alert('login button clicked');
 }
 
-function getStorage() {
+function getReservation() {
     var deladd, deldate, delreturn;
 
     deladd = localStorage.getItem('deladdress');
-    localStorage.removeItem('deladdress');
+    //localStorage.removeItem('deladdress');
     deldate = localStorage.getItem('deldate');
-    localStorage.removeItem('deldate');
+    //localStorage.removeItem('deldate');
     delreturn = localStorage.getItem('delreturn');
-    localStorage.removeItem('delreturn');
+    //localStorage.removeItem('delreturn');
     $('#deladdress').val(deladd);
     $('#deldate').val(deldate);
     $('#delreturn').val(delreturn);
@@ -126,27 +118,269 @@ function getStorage() {
         delreturn: delreturn
 
     };
+
     searchq = JSON.stringify(searchq);
     $.get("/reservation/", searchq, function (data) {
         var imgurl, details, info, cost;
-        for (i = 1; i < data.length; i++) {
-            console.log(data[i][1].Image);
-            imgurl = "./content/" + data[i][1].Image;
-            details = "<p class=\"flow-text\"><b><span class=\"flowtitle\">" + data[i][1].Type + " " + data[i][1].Transmission + "</span></b>";
-            details += "<br>" + data[i][1].Make + " " + data[i][1].Model + " or similar.<br>";
-            details += data[i][1].Transmission + " Transmission";
-            info = "<span class=\"info\"><i class=\"material-icons\">person</i> " + data[i][1].Seats + " seats&nbsp;&nbsp;&nbsp;&nbsp;";
-            info += "<img src=\"./content/cardoor.png\" width=\"7%\" height=\"7%\" margin-bottom:\"10px\"> " + data[i][1].Doors + " doors ";
+
+        //console.log(data);
+        for (i = 0; i < data.length; i++) {
+            imgurl = "./content/" + data[i].Image;
+            details = "<p class=\"flow-text\"><b><span class=\"flowtitle\">" + data[i].Type + " " + data[i].Transmission + "</span></b>";
+            details += "<br>" + data[i].Make + " " + data[i].Model + " or similar.<br>";
+            details += data[i].Transmission + " Transmission";
+            info = "<span class=\"info\"><i class=\"material-icons\">person</i> " + data[i].Seats + " seats&nbsp;&nbsp;&nbsp;&nbsp;";
+            info += "<img src=\"./content/cardoor.png\" width=\"7%\" height=\"7%\" margin-bottom:\"10px\"> " + data[i].Doors + " doors ";
             info += "<br><i class=\"material-icons\">usb</i> <i class=\"material-icons\">bluetooth_audio</i> <i class=\"material-icons\">ac_unit</i></span>";
-            cost = "<span class=\"info rate\">A$" + data[i][1].Rate + " per day.</span><br>";
-            cost += "<button id=\"btnSelect\" class=\"btn waves-effect waves-light #212121 grey darken-4\" type=\"submit\" name=\"action\">Select<i class=\"material-icons right\">add</i></button>"
+            cost = "<span class=\"info rate\">A$" + data[i].Rate + " per day.</span><br>";
+            cost += "<button id=\"btnSelect" + [i] + "\" class=\"btn waves-effect waves-light #212121 grey darken-4\" type=\"submit\" name=\"action\">Select<i class=\"material-icons right\">add</i></button>"
             updateDiv(imgurl, details, info, cost);
+
         };
     });
 
     var updateDiv = function (url, details, info, cost) {
-        $("#spacer").append('</div><div class=\"row\" id=\"carsrow\"><div class=\"col s12\"><div class=\"col s3\"><img src=\"' + url + '\" imgborder=\"1\" heigh=\"75%\" width=\"75%\"></div><div class=\"col s3\">' + details + '</div><div class=\"col s3\">' + info + '</div><div class=\"col s3\">' + cost + '</div></div></div></div>');
-
+        $("#spacer").append('</div><div class=\"row\" id=\"carsrow\"><div class=\"col s12\"><div class=\"col s3\"><img src=\"' + url + '\" imgborder=\"1\" heigh=\"75%\" width=\"75%\"></div><div class=\"col s3\">' + details + '</div><div class=\"col s3\">' + info + '</div><div class=\"col s3\">' + cost + '</div></div></div></div></div></body></html>');
     };
 
+
 };
+
+function doBooking() {
+
+    createBooking();
+};
+
+// *********************************************************************************************
+// HANDLER FOR SELECT BUTTONS AFTER BEING DYNAMICALLY CREATED
+$(document).on("click", "#btnSelect0", function () {
+    var searchq;
+    searchq = {
+        _id: "BAC001"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect1", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC002"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect2", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC003"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect3", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC004"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect4", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC005"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect5", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC006"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect6", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC007"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect7", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC008"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect8", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC009"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect9", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC010"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnSelect10", function () {
+    var searchq;
+
+    searchq = {
+        _id: "BAC011"
+    }
+
+    $.get("/selection/", searchq, function (data) {
+        createWindow(data);
+    });
+});
+
+$(document).on("click", "#btnConfirm", function () {
+    alert("confirm booking");
+});
+
+// *********************************************************************************************
+// FUNCTION: CREATEWINDOW
+// PARAMETERS: Data returned from the database, Index of the data to be rendered in the window
+function createWindow(data) {
+    var newContent, sadd, sdate, sreturn, imgurl;
+
+    sadd = localStorage.getItem('deladdress');
+    sdate = localStorage.getItem('deldate');
+    sreturn = localStorage.getItem('delreturn');
+
+    //console.log(data[num]);
+    imgurl = "./content/" + data[0][1].Image;
+
+    localStorage.setItem("url", imgurl);
+    localStorage.setItem("Make", data[0][1].Make);
+    localStorage.setItem("Model", data[0][1].Model);
+    localStorage.setItem("Transmission", data[0][1].Transmission);
+    localStorage.setItem("Rate", data[0][1].Rate);
+    localStorage.setItem("Type", data[0][1].Type);
+
+    // HEADER CONTENT
+    newContent = "<head><title>BOOK A CAR</title><script src=\"https://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\" async></script>"
+    newContent += "<!-- Compiled and minified CSS --><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css\" async><!-- Compiled and minified JavaScript -->"
+    newContent += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js\" async></script><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">"
+    newContent += "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/style2.css\" async>"
+    newContent += "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/w3css.css\" async><script src=\"env.js\"></script></head>"
+
+    // BODY CONTENT
+    newContent += "<body class=\"body\"><nav><div class=\"nav-wrapper #212121 grey darken-4\"><a href=\"#\" class=\"brand-logo\"><img src=\"./content/logo.jpg\"></a><ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">"
+    newContent += "<li><a href=\"index.html\">Home</a></li><li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Sign Up</a></li></ul></div></nav>"
+    newContent += "<div class=\"container\"><!-- center content--><div class=\"row\"><div class=\"col s12\"><br><br></div><div class=\"col s12\"><h1 class=\"title\">Book-A-Car</h1></div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 flowtitle\">Delivery</div><div class=\"col s3 flowtitle\">Return</div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 white-text\">" + sadd + "</div><div class=\"col s3 white-text\">" + sadd + "</div><div class=\"col s3 white-text\"></div><div class=\"col s3 white-text\"></div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 white-text\">" + sdate + "</div><div class=\"col s3 white-text\">" + sreturn + "</div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><br><br></div></div>"
+    newContent += "<div class=\"row\" id=\"bookit\"><div class=\"col s12\"><div class=\"col s5 white-text\"><img src=\"" + imgurl + "\" imgborder=\"1\"></div><div class=\"col s3 white-text\">"
+    newContent += "<span class=\"flowtitle white-text\"><b>" + data[0][1].Type + " " + data[0][1].Transmission + "</b></span><br/><br/>" + data[0][1].Make + " " + data[0][1].Model + " or similar.<br/><br/>"
+    newContent += "<span class=\"info rate\">A$" + data[0][1].Rate + " per day.</span><br/><br/>"
+    newContent += "<button id=\"btnBookit\" class=\"btn waves-effect waves-light #212121 grey darken-4\" type=\"submit\" name=\"action\">Book It<i class=\"material-icons right\">send</i></button></div></div></div>"
+
+
+    // FOOTER CONTENT
+    newContent += "<div class=\"row\"><br/><br/></div><div class=\"row\"><div class=\"footer-copyright\"><div class=\"container center-align\"><span class=\"grey-text text-lighten-4\">Copyright &copy; 2020 Book-A-Car Australia</span></div></div></div></body></html>"
+    document.open();
+    document.write(newContent);
+    document.close();
+}
+
+
+function createBooking() {
+    var newContent, sadd, sdate, sreturn, imgurl;
+
+    sadd = localStorage.getItem('deladdress');
+    sdate = localStorage.getItem('deldate');
+    sreturn = localStorage.getItem('delreturn');
+
+    //console.log(data[num]);
+    imgurl = localStorage.getItem("url");
+    make = localStorage.getItem("Make");
+    model = localStorage.getItem("Model");
+    transmission = localStorage.getItem("Transmission");
+    rate = localStorage.getItem("Rate");
+    type = localStorage.getItem("Type");
+
+
+
+    // HEADER CONTENT
+    newContent = "<head><title>BOOK A CAR</title><script src=\"https://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\" async></script>"
+    newContent += "<!-- Compiled and minified CSS --><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css\" async><!-- Compiled and minified JavaScript -->"
+    newContent += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js\" async></script><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">"
+    newContent += "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/style2.css\" async>"
+    newContent += "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/w3css.css\" async><script src=\"env.js\"></script></head>"
+
+    // BODY CONTENT
+    newContent += "<body class=\"body\"><nav><div class=\"nav-wrapper #212121 grey darken-4\"><a href=\"#\" class=\"brand-logo\"><img src=\"./content/logo.jpg\"></a><ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">"
+    newContent += "<li><a href=\"index.html\">Home</a></li><li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Sign Up</a></li></ul></div></nav>"
+    newContent += "<div class=\"container\"><!-- center content--><div class=\"row\"><div class=\"col s12\"><br><br></div><div class=\"col s12\"><h1 class=\"title\">Book-A-Car</h1></div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 flowtitle\">Delivery</div><div class=\"col s3 flowtitle\">Return</div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 white-text\">" + sadd + "</div><div class=\"col s3 white-text\">" + sadd + "</div><div class=\"col s3 white-text\"></div><div class=\"col s3 white-text\"></div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 white-text\">" + sdate + "</div><div class=\"col s3 white-text\">" + sreturn + "</div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><br><br></div></div>"
+    newContent += "<div class=\"row\" id=\"bookit\"><div class=\"col s12\"><div class=\"col s5 white-text\"><img src=\"" + imgurl + "\" imgborder=\"1\"></div><div class=\"col s3 white-text\">"
+    newContent += "<span class=\"flowtitle white-text\"><b>" + type + " " + transmission + "</b></span><br/><br/>" + make + " " + model + " or similar.<br/><br/>"
+    newContent += "<span class=\"info rate\">A$" + rate + " per day.</span><br/><br/></div></div></div>"
+    newContent += "<HR>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 white-text\"><h2>Your Information</h2></div></div></div>"
+    newContent += "<div class=\"row\"><div class=\"input-field col s6\"><input id=\"first_name\" type=\"text\" class=\"validate\"><label for=\"first_name\">First Name</label></div><div class=\"input-field col s6\"><input id=\"last_name\" type=\"text\" class=\"validate\"><label for=\"last_name\">Last Name</label></div></div>"
+    newContent += "<div class=\"row\"><div class=\"input-field col s6\"><input id=\"email\" type=\"email\" class=\"validate\"><label for=\"email\">Email</label></div><div class=\"input-field col s6\"><input id=\"mobile\" type=\"text\" class=\"validate\"><label for=\"mobile\">Mobile</label></div></div>"
+    newContent += "<div class=\"row\"><div class=\"input-field col s6\"><button id=\"btnConfirm\" class=\"btn waves-effect waves-light #212121 grey darken-4\" type=\"submit\" name=\"action\">Confirm Booking<i class=\"material-icons right\">send</i></button></div></div>"
+
+    // FOOTER CONTENT
+    newContent += "<div class=\"row\"><br/><br/></div><div class=\"row\"><div class=\"footer-copyright\"><div class=\"container center-align\"><span class=\"grey-text text-lighten-4\">Copyright &copy; 2020 Book-A-Car Australia</span></div></div></div></body></html>"
+    document.open();
+    document.write(newContent);
+    document.close();
+}
