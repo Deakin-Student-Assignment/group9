@@ -284,9 +284,7 @@ $(document).on("click", "#btnSelect10", function () {
     });
 });
 
-$(document).on("click", "#btnConfirm", function () {
-    alert("confirm booking");
-});
+
 
 // *********************************************************************************************
 // FUNCTION: CREATEWINDOW
@@ -307,6 +305,7 @@ function createWindow(data) {
     localStorage.setItem("Transmission", data[0][1].Transmission);
     localStorage.setItem("Rate", data[0][1].Rate);
     localStorage.setItem("Type", data[0][1].Type);
+    localStorage.setItem("_id", data[0][1]._id);
 
     // HEADER CONTENT
     newContent = "<head><title>BOOK A CAR</title><script src=\"https://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\" async></script>"
@@ -338,7 +337,7 @@ function createWindow(data) {
 
 
 function createBooking() {
-    var newContent, sadd, sdate, sreturn, imgurl;
+    var newContent, sadd, sdate, sreturn, imgurl, _id;
 
     sadd = localStorage.getItem('deladdress');
     sdate = localStorage.getItem('deldate');
@@ -351,6 +350,7 @@ function createBooking() {
     transmission = localStorage.getItem("Transmission");
     rate = localStorage.getItem("Rate");
     type = localStorage.getItem("Type");
+    _id = localStorage.getItem("_id");
 
 
 
@@ -383,4 +383,113 @@ function createBooking() {
     document.open();
     document.write(newContent);
     document.close();
+}
+
+$(document).on("click", "#btnConfirm", function () {
+
+    var first, last, email, phone, make, model, _id, start, end, add;
+
+    var booking;
+
+    add = localStorage.getItem('deladdress');
+    start = localStorage.getItem('deldate');
+    end = localStorage.getItem('delreturn');
+
+    //console.log(data[num]);
+    make = localStorage.getItem("Make");
+    model = localStorage.getItem("Model");
+    transmission = localStorage.getItem("Transmission");
+    rate = localStorage.getItem("Rate");
+    type = localStorage.getItem("Type");
+    _id = localStorage.getItem("_id");
+
+    first = $('#first_name').val();
+    last = $('#last_name').val();
+    email = $('#email').val();
+    phone = $('#mobile').val();
+
+    localStorage.setItem("email", email);
+
+    booking = {
+        _id: email,
+        delivery: add,
+        client: {
+            FirstName: first,
+            Surname: last,
+            email: email,
+            phone: phone
+        },
+        item: {
+            id: _id,
+            Make: make,
+            Model: model
+        },
+        bookingdate: {
+            start: start,
+            end: end
+        }
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "https://bookingsvc-api.mybluemix.net/",
+        crossDomain: true,
+        data: JSON.stringify(booking),
+        dataType: 'json',
+        success: function (message) {
+            console.log(message);
+            //sendEmail(booking);
+        },
+        error: function (e) {
+            alert("Error");
+            console.log(e);
+        }
+    });
+
+
+
+});
+
+function confirmBooking() {
+    var newContent, email;
+
+    email = localStorage.getItem("email");
+    sendEmail();
+    // HEADER CONTENT
+    newContent = "<head><title>BOOK A CAR</title><script src=\"https://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\" async></script>"
+    newContent += "<!-- Compiled and minified CSS --><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css\" async><!-- Compiled and minified JavaScript -->"
+    newContent += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js\" async></script><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">"
+    newContent += "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/style2.css\" async>"
+    newContent += "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/w3css.css\" async><script src=\"env.js\"></script></head>"
+
+    // BODY CONTENT
+    newContent += "<body class=\"body\"><nav><div class=\"nav-wrapper #212121 grey darken-4\"><a href=\"#\" class=\"brand-logo\"><img src=\"./content/logo.jpg\"></a><ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">"
+    newContent += "<li><a href=\"index.html\">Home</a></li><li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Sign Up</a></li></ul></div></nav>"
+    newContent += "<div class=\"container\"><!-- center content--><div class=\"row\"><div class=\"col s12\"><br><br></div><div class=\"col s12\"><h1 class=\"title\">Book-A-Car</h1></div></div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 flowtitle\">Your booking is confirmed.  An email confirmation has been sent to:" + email + " </div>"
+
+    // FOOTER CONTENT
+    newContent += "<div class=\"row\"><br/><br/></div><div class=\"row\"><div class=\"footer-copyright\"><div class=\"container center-align\"><span class=\"grey-text text-lighten-4\">Copyright &copy; 2020 Book-A-Car Australia</span></div></div></div></body></html>"
+    document.open();
+    document.write(newContent);
+    document.close();
+}
+
+function sendEmail(booking) {
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "./email",
+        crossDomain: true,
+        data: JSON.stringify(booking),
+        dataType: 'json',
+        success: function (message) {
+            console.log(message);
+        },
+        error: function (e) {
+            alert("Error");
+            console.log(e);
+        }
+    });
 }

@@ -14,16 +14,6 @@ router.get('/', (req, res) => {
         if (err) {
             throw err;
         } else {
-            /*
-            for (var i in items) {
-
-                console.log(JSON.stringify(items));
-                /*cars.push({
-                    items[i]
-                });*/
-
-
-
             res.send(items);
         };
     });
