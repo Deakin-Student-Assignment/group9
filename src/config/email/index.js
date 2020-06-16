@@ -1,13 +1,36 @@
-// using Twilio SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-const sgMail = require('@sendgrid/mail');
+const mailjet = require('node-mailjet');
 require("dotenv").config();
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-module.exports.sendEmail = function (request, callback) {
+module.exports.sendEmail = function (res, callback) {
 
-
+    const request = new mailjet(
+            process.env.MJ_APIKEY_PUBLIC,
+            process.env.MJ_APIKEY_PRIVATE
+        ).post("send", {
+            'version': 'v3.1'
+        })
+        .request({
+            "Messages": [{
+                "From": {
+                    "Email": "coxco@deakin.edu.au",
+                    "Name": "Connie Cox"
+                },
+                "To": [{
+                    "Email": res.body.client.email,
+                    "Name": res.body.client.First_name + " " + res.body.client.Surname
+                }],
+                "Subject": "Book-A-Car Confirmation Email",
+                "TextPart": "Hi There " + res.body.client.First_name + ". Your booking for delivery on " + res.body.bookingdate.start + " is now confirmed.  Thank you for booking with us!"
+            }]
+        })
+        .then((result) => {
+            console.log(result.body);
+        })
+        .catch((err) => {
+            console.log(err.statusCode);
+        })
+    /*
     const msg = {
         to: request.body.client.email,
         from: 'no-reply@book-a-car.com',
@@ -15,6 +38,6 @@ module.exports.sendEmail = function (request, callback) {
         text: "HiYour booking for delivery on: " + request.body.bookingdate.start + "is now confirmed."
     };
 
-    sgMail.send(msg);
-    return callback(200);
+    sgMail.send(msg);*/
+    //return callback(200);
 };
