@@ -53,7 +53,6 @@ $(document).ready(function () {
             data: JSON.stringify(user),
             dataType: 'json',
             success: function (message) {
-                console.log(message);
                 var x = document.getElementById("successsign");
                 var y = document.getElementById("signup");
 
@@ -123,7 +122,6 @@ function getReservation() {
     $.get("/reservation/", searchq, function (data) {
         var imgurl, details, info, cost;
 
-        //console.log(data);
         for (i = 0; i < data.length; i++) {
             imgurl = "./content/" + data[i].Image;
             details = "<p class=\"flow-text\"><b><span class=\"flowtitle\">" + data[i].Type + " " + data[i].Transmission + "</span></b>";
@@ -296,7 +294,6 @@ function createWindow(data) {
     sdate = localStorage.getItem('deldate');
     sreturn = localStorage.getItem('delreturn');
 
-    //console.log(data[num]);
     imgurl = "./content/" + data[0][1].Image;
 
     localStorage.setItem("url", imgurl);
@@ -343,7 +340,6 @@ function createBooking() {
     sdate = localStorage.getItem('deldate');
     sreturn = localStorage.getItem('delreturn');
 
-    //console.log(data[num]);
     imgurl = localStorage.getItem("url");
     make = localStorage.getItem("Make");
     model = localStorage.getItem("Model");
@@ -387,6 +383,13 @@ function createBooking() {
 
 $(document).on("click", "#btnConfirm", function () {
 
+    saveBooking();
+
+
+
+});
+
+function saveBooking() {
     var first, last, email, phone, make, model, _id, start, end, add;
 
     var booking;
@@ -394,8 +397,6 @@ $(document).on("click", "#btnConfirm", function () {
     add = localStorage.getItem('deladdress');
     start = localStorage.getItem('deldate');
     end = localStorage.getItem('delreturn');
-
-    //console.log(data[num]);
     make = localStorage.getItem("Make");
     model = localStorage.getItem("Model");
     transmission = localStorage.getItem("Transmission");
@@ -436,9 +437,10 @@ $(document).on("click", "#btnConfirm", function () {
         crossDomain: true,
         data: JSON.stringify(booking),
         dataType: 'json',
+        contentType: "application/json; charset=utf-8",
         success: function (message) {
-            console.log(message);
-            //sendEmail(booking);
+            sendEmail();
+            confirmBooking();
         },
         error: function (e) {
             alert("Error");
@@ -446,9 +448,7 @@ $(document).on("click", "#btnConfirm", function () {
         }
     });
 
-
-
-});
+}
 
 function confirmBooking() {
     var newContent, email;
@@ -466,7 +466,7 @@ function confirmBooking() {
     newContent += "<body class=\"body\"><nav><div class=\"nav-wrapper #212121 grey darken-4\"><a href=\"#\" class=\"brand-logo\"><img src=\"./content/logo.jpg\"></a><ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">"
     newContent += "<li><a href=\"index.html\">Home</a></li><li><a href=\"login.html\">Login</a></li><li><a href=\"signup.html\">Sign Up</a></li></ul></div></nav>"
     newContent += "<div class=\"container\"><!-- center content--><div class=\"row\"><div class=\"col s12\"><br><br></div><div class=\"col s12\"><h1 class=\"title\">Book-A-Car</h1></div></div>"
-    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s3 flowtitle\">Your booking is confirmed.  An email confirmation has been sent to:" + email + " </div>"
+    newContent += "<div class=\"row\"><div class=\"col s12\"><div class=\"col s12 flowtitle\">Your booking is confirmed.  An email confirmation has been sent to: " + email + " </div>"
 
     // FOOTER CONTENT
     newContent += "<div class=\"row\"><br/><br/></div><div class=\"row\"><div class=\"footer-copyright\"><div class=\"container center-align\"><span class=\"grey-text text-lighten-4\">Copyright &copy; 2020 Book-A-Car Australia</span></div></div></div></body></html>"
@@ -476,6 +476,46 @@ function confirmBooking() {
 }
 
 function sendEmail(booking) {
+    var first, last, email, phone, make, model, _id, start, end, add;
+
+    var booking;
+
+    add = localStorage.getItem('deladdress');
+    start = localStorage.getItem('deldate');
+    end = localStorage.getItem('delreturn');
+    make = localStorage.getItem("Make");
+    model = localStorage.getItem("Model");
+    transmission = localStorage.getItem("Transmission");
+    rate = localStorage.getItem("Rate");
+    type = localStorage.getItem("Type");
+    _id = localStorage.getItem("_id");
+
+    first = $('#first_name').val();
+    last = $('#last_name').val();
+    email = $('#email').val();
+    phone = $('#mobile').val();
+
+    localStorage.setItem("email", email);
+
+    booking = {
+        _id: email,
+        delivery: add,
+        client: {
+            FirstName: first,
+            Surname: last,
+            email: email,
+            phone: phone
+        },
+        item: {
+            id: _id,
+            Make: make,
+            Model: model
+        },
+        bookingdate: {
+            start: start,
+            end: end
+        }
+    };
 
     $.ajax({
         type: "POST",
@@ -484,11 +524,12 @@ function sendEmail(booking) {
         crossDomain: true,
         data: JSON.stringify(booking),
         dataType: 'json',
+        contentType: "application/json; charset=utf-8",
         success: function (message) {
-            console.log(message);
+            return;
         },
         error: function (e) {
-            alert("Error");
+            //alert("Error");
             console.log(e);
         }
     });

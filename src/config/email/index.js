@@ -3,18 +3,18 @@
 const sgMail = require('@sendgrid/mail');
 require("dotenv").config();
 
-
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports.sendEmail = function (request, callback) {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 
     const msg = {
-        to: request,
+        to: request.body.client.email,
         from: 'no-reply@book-a-car.com',
         subject: 'Confirmation Email',
-        text: 'and easy to do anywhere, even with Node.js',
-        html: '<strong>and easy to do anywhere, even with Node.js</strong>'
+        text: "HiYour booking for delivery on: " + request.body.bookingdate.start + "is now confirmed."
     };
 
     sgMail.send(msg);
+    return callback(200);
 };

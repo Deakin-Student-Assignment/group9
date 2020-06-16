@@ -5,8 +5,20 @@ const email = require('../config/email/');
 
 
 router.post('/', (req, res) => {
+    console.log("emailing");
+    //console.log(req.body);
+    try {
+        email.sendEmail(req, function (e) {
+            if (e) {
+                throw e;
+            }
+        });
+        res.sendStatus(200);
+    } catch (err) {
+        throw err;
+    }
 
-    console.log(req.body);
 
 });
+
 module.exports = router;
